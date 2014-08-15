@@ -13,7 +13,9 @@ describe Employee do
     employee1 = Employee.create({name: "John Smith"})
     project1 = Project.create({name: "Urban Airship account", employee_id: employee1.id})
     project2 = Project.create({name: "New Ruby Project", employee_id: employee1.id})
-    expect(employee1.project).to eq [project1, project2]
+    employee1.projects << project1
+    employee1.projects << project2
+    expect(employee1.projects).to eq [project1, project2]
   end
 
   it "allows an employee to see what project they are working on" do
